@@ -12,7 +12,10 @@ RUN set -ex; \
     cd openvpn-admin; \
     \
     # Install third parties
-    bower --allow-root install
+    bower --allow-root install; \
+    mkdir -p dist; \
+    cp index.php,sql,bower.json,.bowerrc,js,include,css ./dist/
+
 
 #php:5.5-apache
 FROM php:7.4.21-fpm-alpine3.14 as prod
@@ -24,5 +27,4 @@ RUN set -ex; \
 
 WORKDIR /app
 
-COPY --from=0 /app/openvpn-admin/index.php /app/
-
+COPY --from=0 /app/openvpn-admin/dist/* /app/

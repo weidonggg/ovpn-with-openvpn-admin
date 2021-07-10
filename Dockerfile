@@ -12,8 +12,9 @@ RUN set -ex; \
     cd openvpn-admin; \
     \
     # Install third parties
-    bower --allow-root install --registry https://registry.npm.taobao.org
+    bower --allow-root install
 
+#php:5.5-apache
 FROM php:7.4.21-fpm-alpine3.14 as prod
 
 LABEL maintainer="Zhao Weidong <1993plus@gmail.com>"
@@ -23,5 +24,5 @@ RUN set -ex; \
 
 WORKDIR /app
 
-COPY COPY --from=0 /app/{ndex.php,sql,bower.json,.bowerrc,js,include,css} /app/
+COPY COPY --from=0 /app/index.php /app/
 

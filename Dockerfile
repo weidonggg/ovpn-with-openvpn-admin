@@ -24,5 +24,5 @@ RUN set -ex; \
 
 WORKDIR /app
 
-COPY --from=0 /app/index.php /app/openvpn-admin/{index.php,sql,bower.json,.bowerrc,js,include,css} /app/
+COPY --from=0 /app/openvpn-admin/{index.php,sql,bower.json,.bowerrc,js,include,css} /app/
 

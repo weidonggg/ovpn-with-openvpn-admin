@@ -17,7 +17,7 @@ RUN set -ex; \
     cp -rf index.php sql bower.json .bowerrc js include css  ./dist/
 
 
-#php:5.5-apache
+# php:7.1.33-apache-stretch
 FROM php:5.5-apache as prod
 
 LABEL maintainer="Zhao Weidong <1993plus@gmail.com>"

@@ -27,4 +27,4 @@ RUN set -ex; \
 
 WORKDIR /app
 
-COPY --from=0 /app/openvpn-admin/dist/* /app/
+COPY --from=0 /app/openvpn-admin/dist/ /app/

@@ -24,5 +24,5 @@ RUN set -ex; \
 
 WORKDIR /app
 
-COPY COPY --from=0 /app/index.php /app/
+COPY --from=0 /app/index.php /app/
 

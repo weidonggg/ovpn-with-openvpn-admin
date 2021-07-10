@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+
+  openvpn-server:
+    image: kylemanna/openvpn:2.4
+    container_name: openvpn-server
+    cap_add:
+     - NET_ADMIN
+    sysctls:
+      - net.ipv4.ip_forward=1
+    ports:
+     - "1194:1194/udp"
+    restart: always
+    volumes:
+     - ./openvpn-data/conf:/etc/openvpn
+

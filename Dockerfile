@@ -14,7 +14,7 @@ RUN set -ex; \
     # Install third parties
     bower --allow-root install; \
     mkdir -p dist; \
-    cp index.php,sql,bower.json,.bowerrc,js,include,css ./dist/
+    cp -rf index.php,sql,bower.json,.bowerrc,js,include,css ./dist/
 
 
 #php:5.5-apache

@@ -18,13 +18,19 @@ RUN set -ex; \
 
 
 #php:5.5-apache
-FROM php:7.4.21-fpm-alpine3.14 as prod
+FROM php:5.5-apache as prod
 
 LABEL maintainer="Zhao Weidong <1993plus@gmail.com>"
 
-RUN set -ex; \
-    mkdir /app
+RUN set -eux; \
+	apt-get update; \
+	apt-get install -y --no-install-recommends libzip-dev; \
+  \
+  docker-php-ext-install pdo_mysql zip; \
+  \
+  apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
+	rm -rf /var/lib/apt/lists/*
 
-WORKDIR /app
+#WORKDIR /app
 
-COPY --from=0 /app/openvpn-admin/dist/ /app/
+COPY --from=0 /app/openvpn-admin/dist/ /var/www/html/

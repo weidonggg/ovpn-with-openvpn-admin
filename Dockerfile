@@ -18,7 +18,7 @@ RUN set -ex; \
 
 
 # php:7.1.33-apache-stretch
-FROM php:5.5-apache as prod
+FROM php:7.1.33-apache-stretch as prod
 
 LABEL maintainer="Zhao Weidong <1993plus@gmail.com>"
 

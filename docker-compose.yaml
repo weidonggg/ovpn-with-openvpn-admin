@@ -21,7 +21,7 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfiles/Dockerfile-php-runtime
-    image: weidong93/openvpn-admin:0.1
+    image: weidong93/openvpn-admin:php-7.1.33-apache-stretch
     container_name: openvpn-admin
     ports:
      - "8098:80"

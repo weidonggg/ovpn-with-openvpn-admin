@@ -28,8 +28,8 @@ jobs:
         name: Build and push openvpn-server
         uses: docker/build-push-action@v2
         with:
-          file: Dockerfile-php-runtime
-          context: Dockerfiles
+          file: Dockerfiles/Dockerfile-php-runtime
+          context: .
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/openvpn-server:2.4
       -
@@ -38,13 +38,13 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
-          repository: user/app
+          repository: ${{ secrets.DOCKERHUB_USERNAME }}/openvpn-server
       -
         name: Build and push openvpn-admin
         uses: docker/build-push-action@v2
         with:
-          file: Dockerfile-php-runtime
-          context: Dockerfiles
+          file: Dockerfiles/Dockerfile-openvpn-admin
+          context: .
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/openvpn-admin:php-7.1.33-apache-stretch
       -
@@ -53,4 +53,4 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
-          repository: ${{ secrets.DOCKERHUB_USERNAME }}/openvpn-admin:php-7.1.33-apache-stretch
+          repository: ${{ secrets.DOCKERHUB_USERNAME }}/openvpn-admin

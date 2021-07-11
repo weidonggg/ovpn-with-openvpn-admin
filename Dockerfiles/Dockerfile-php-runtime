@@ -1,0 +1,10 @@
+FROM kylemanna/openvpn:2.4
+
+
+RUN set -ex; \
+    \
+    ## Install php runtime.
+    apk add --no-cache \
+        php-cli \
+        mysql-client
+ 

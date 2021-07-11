@@ -1,0 +1,19 @@
+#!/bin/bash
+
+client=$1
+nopass=$2
+
+if [ "$client" == "" ]; then
+    echo "first argument can't be null."
+    echo ""
+    echo "    Example:"
+    echo "    $0 client"
+    exit 1
+fi
+
+if [ "$nopass" == "nopass" ]; then
+    docker-compose run --rm openvpn-server easyrsa build-client-full $client nopass
+
+else
+    docker-compose run --rm openvpn-server easyrsa build-client-full $client
+fi

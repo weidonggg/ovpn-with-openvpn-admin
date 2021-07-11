@@ -1,0 +1,22 @@
+#!/bin/bash
+
+client=$1
+
+if [ "$client" == "" ]; then
+    echo "first argument can't be null."
+    echo ""
+    echo "    Example:"
+    echo "    $0 client"
+    exit 1
+fi
+
+exportpath=$(dirname "${BASH_SOURCE[0]}")/../etc
+mkdir -p $exportpath
+
+docker-compose run --rm openvpn-server ovpn_getclient $client > ${exportpath}/${client}.ovpn
+cd $exportpath
+exportpath=$(pwd)
+
+echo ""
+echo "Successful, export to path $exportpath."
+echo ""

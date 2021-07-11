@@ -3,15 +3,28 @@ version: '2'
 services:
 
   openvpn-server:
-    image: kylemanna/openvpn:2.4
+    build:
+      context: .
+      dockerfile: ./Dockerfiles/Dockerfile-php-runtime
+    image: weidong93/openvpn-server:2.4
     container_name: openvpn-server
     cap_add:
      - NET_ADMIN
-    sysctls:
-      - net.ipv4.ip_forward=1
     ports:
-     - "1194:1194/udp"
+     - "2298:1194/udp"
     restart: always
     volumes:
      - ./openvpn-data/conf:/etc/openvpn
+     - ./openvpn-data/scripts:/etc/openvpn/scripts
 
+  openvpn-admin:
+    build:
+      context: .
+      dockerfile: ./Dockerfiles/Dockerfile-php-runtime
+    image: weidong93/openvpn-admin:0.1
+    container_name: openvpn-admin
+    ports:
+     - "8098:80"
+    restart: always
+    volumes:
+     - ./common/openvpn-admin/config.php:/var/www/html/include/config.php

@@ -1,6 +1,6 @@
 FROM node:10.24.1-alpine3.11 as builder
 
-RUN set -ex; \
+RUN set -eux; \
     # Install build tools
     apk add --no-cache git; \
     # Install bower
